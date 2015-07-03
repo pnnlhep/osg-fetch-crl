@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-if [ -f /etc/grid-security/certificates.orig /etc/grid-security/certificates.orig ];
+if [ ! -d /etc/grid-security/certificates ];
 then
 	cp -a /etc/grid-security/certificates.orig/* /etc/grid-security/certificates/
 fi
