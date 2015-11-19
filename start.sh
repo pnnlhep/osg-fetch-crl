@@ -5,5 +5,7 @@ then
         mkdir -p /etc/grid-security/certificates/
 	cp -a /etc/grid-security/certificates.orig/* /etc/grid-security/certificates/
 fi
-fetch-crl
+if [ "x$SKIP_INIT" == "x" ]; then
+	fetch-crl
+fi
 /usr/sbin/crond -n
