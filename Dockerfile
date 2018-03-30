@@ -7,6 +7,6 @@ RUN \
   yum clean all; \
   yum install -y fetch-crl osg-ca-certs perl-Crypt-SSLeay rsync && \
   mv /etc/grid-security/certificates /etc/grid-security/certificates.orig && \
-  chmod +x /etc/start.sh && \
+  chmod +x /etc/start.sh
 
 CMD ["/etc/start.sh"]
