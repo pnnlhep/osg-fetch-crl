@@ -6,9 +6,10 @@ then
 	cp -a /etc/grid-security/certificates.orig/* /etc/grid-security/certificates/
 else
         #clean out old ca's.
-        for x in 0a2bac92 28a58577 33eb0f86 524cae41 82b36fca BrGrid c7a3bf7e HellasGrid-CA-2006 HellasGrid-Root; do
-                rm -f /etc/grid-security/certificates/$x.* || true
-        done
+        #for x in 0a2bac92 28a58577 33eb0f86 524cae41 82b36fca BrGrid c7a3bf7e HellasGrid-CA-2006 HellasGrid-Root; do
+        #        rm -f /etc/grid-security/certificates/$x.* || true
+        #done
+
         #sync ca's.
         rsync -avzh /etc/grid-security/certificates.orig/ /etc/grid-security/certificates/
 fi
@@ -22,4 +23,8 @@ if [ "x$SKIP_INIT" == "x" ]; then
 	fi
 fi
 touch /etc/grid-security/certificates/.fetch_crl_inited
-/usr/sbin/crond -n
+while true; do
+  #Every 4 hours
+  sleep 14400
+  fetch-crl || true
+done
